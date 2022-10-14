@@ -19,9 +19,9 @@ steps:
       system: $arch
     command:
       - echo 'cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon'
-      - echo $(hostname)
+      - echo $(scutil --get LocalHostName)
       - false
-      - buildkite-agent meta-data set hostname "$(hostname)"
+      - buildkite-agent meta-data set hostname "$(scutil --get LocalHostName)"
       - echo buildkite-agent meta-data set nix 1
       - ./upload-erase.sh $arch | buildkite-agent pipeline upload
 EOF
