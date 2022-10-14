@@ -3,7 +3,7 @@
 set -eu
 set -o pipefail
 
-arch="$(buildkite-agent meta-data get system)"
+arch="$1"
 
 cat <<EOF
 steps:
@@ -21,5 +21,5 @@ steps:
       - cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon
       - buildkite-agent meta-data set hostname "$(hostname)"
       - echo buildkite-agent meta-data set nix 1
-      - ./upload-erase.sh | buildkite-agent pipeline upload
+      - ./upload-erase.sh $arch | buildkite-agent pipeline upload
 EOF

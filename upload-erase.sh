@@ -3,7 +3,7 @@
 set -eu
 set -o pipefail
 
-arch="$(buildkite-agent meta-data get system)"
+arch="$1"
 hostname="$(buildkite-agent meta-data get hostname)"
 
 cat <<EOF
