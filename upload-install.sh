@@ -19,7 +19,7 @@ steps:
       system: $arch
     command:
       - echo 'cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon'
-      - echo $(scutil --get LocalHostName)
+      - env
       - false
       - buildkite-agent meta-data set hostname "$(scutil --get LocalHostName)"
       - echo buildkite-agent meta-data set nix 1
