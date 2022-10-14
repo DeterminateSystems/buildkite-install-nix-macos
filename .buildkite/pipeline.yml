@@ -1,0 +1,23 @@
+steps:
+  - block: "aarch64-darwin"
+    key: aarch64-manual-intervention
+  - block: "x86_64-darwin"
+    key: x86_64-manual-intervention
+
+  - label: "Test on aarch64-darwin"
+    depends_on: aarch64-manual-intervention
+    agents:
+      mac: 1
+      nix: 0
+      system: aarch64-darwin
+    command:
+      - cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon
+
+  - label: "Test on x86_64-darwin"
+    depends_on: x86_64-manual-intervention
+    agents:
+      mac: 1
+      nix: 0
+      system: x86_64-darwin
+    command:
+      - cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon
