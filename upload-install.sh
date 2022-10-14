@@ -18,7 +18,9 @@ steps:
       nix: 0
       system: $arch
     command:
-      - cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon
+      - echo 'cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon'
+      - echo $(hostname)
+      - false
       - buildkite-agent meta-data set hostname "$(hostname)"
       - echo buildkite-agent meta-data set nix 1
       - ./upload-erase.sh $arch | buildkite-agent pipeline upload
