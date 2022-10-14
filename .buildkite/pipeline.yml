@@ -13,4 +13,4 @@ steps:
     #   nix: 0
     #   system: x86_64-darwin
     command:
-      - ./upload-install.sh x86_64-darwin | buildkite-agent pipeline upload
+      - echo './upload-install.sh x86_64-darwin | buildkite-agent pipeline upload'
