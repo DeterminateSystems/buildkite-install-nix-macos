@@ -22,6 +22,8 @@ steps:
       - nix --help &>/dev/null || cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon
       - if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'; fi
       - buildkite-agent meta-data set hostname "\$(nix --extra-experimental-features 'flakes nix-command' run nixpkgs#jq -- -r '.BUILDKITE_AGENT_META_DATA_HOSTNAME' <(buildkite-agent env))"
-      # - echo buildkite-agent meta-data set nix 1
       - ./upload-erase.sh $arch | buildkite-agent pipeline upload
+      # Set this as a nix=1 machine
+      - sudo sed -i '' 's@nix=0@nix=1@' /var/lib/buildkite-agent/buildkite-agent.cfg
+      - sudo launchctl kickstart -k com.buildkite.buildkite-agent
 EOF
