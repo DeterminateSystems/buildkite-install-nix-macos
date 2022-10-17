@@ -10,7 +10,7 @@ steps:
   - block: "$arch"
     key: $arch-manual-intervention
   - label: "Test on $arch"
-    depends_on: $arch-manual-intervention
+    # depends_on: $arch-manual-intervention
     concurrency_group: $arch-install
     concurrency: 1
     agents:
