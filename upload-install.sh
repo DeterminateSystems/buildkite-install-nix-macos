@@ -7,8 +7,8 @@ arch="$1"
 
 cat <<EOF
 steps:
-  - block: "$arch"
-    key: $arch-manual-intervention
+  # - block: "$arch"
+  #   key: $arch-manual-intervention
   - label: "Test on $arch"
     # depends_on: $arch-manual-intervention
     concurrency_group: $arch-install
