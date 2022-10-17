@@ -18,6 +18,7 @@ steps:
       nix: 0
       system: $arch
     command:
+      - set -x
       - if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'; fi
       - nix --help &>/dev/null || cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon
       - if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'; fi
@@ -25,6 +26,5 @@ steps:
       - ./upload-erase.sh $arch | buildkite-agent pipeline upload
       # Set this as a nix=1 machine
       - sudo sed -i '' 's@nix=0@nix=1@' /var/lib/buildkite-agent/buildkite-agent.cfg
-      - sudo launchctl unload /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist
-      - sudo launchctl load /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist
+      - sudo bash -c 'launchctl unload /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist && sudo launchctl load /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist' & disown
 EOF
