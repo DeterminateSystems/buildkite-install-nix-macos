@@ -20,7 +20,7 @@ steps:
     command:
       - echo 'cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon'
       - buildkite-agent env --pretty
-      # - buildkite-agent meta-data set agent "$BUILDKITE_AGENT_NAME"
+      - buildkite-agent meta-data set hostname "$BUILDKITE_AGENT_META_DATA_HOSTNAME"
       # - echo buildkite-agent meta-data set nix 1
-      # - ./upload-erase.sh $arch | buildkite-agent pipeline upload
+      - ./upload-erase.sh $arch | buildkite-agent pipeline upload
 EOF
