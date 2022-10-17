@@ -25,6 +25,6 @@ steps:
       - buildkite-agent meta-data set hostname "\$(nix --extra-experimental-features 'flakes nix-command' run nixpkgs#jq -- -r '.BUILDKITE_AGENT_META_DATA_HOSTNAME' <(buildkite-agent env))"
       - ./upload-erase.sh $arch | buildkite-agent pipeline upload
       # Set this as a nix=1 machine
-      - sudo sed -i '' 's@nix=0@nix=1@' /var/lib/buildkite-agent/buildkite-agent.cfg
-      - sudo bash -c 'set -x; sleep 1; launchctl unload /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist && echo unloaded; launchctl load /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist && echo loaded' &>/tmp/buildkite-restart.log & disown
+      # - sudo sed -i '' 's@nix=0@nix=1@' /var/lib/buildkite-agent/buildkite-agent.cfg
+      - sudo bash -c 'set -x; sleep 1; launchctl unload /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist &>>/tmp/buildkite-restart.log && echo unloaded &>>/tmp/buildkite-restart.log; launchctl load /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist &>>/tmp/buildkite-restart.log && echo loaded &>>/tmp/buildkite-restart.log' & disown
 EOF
