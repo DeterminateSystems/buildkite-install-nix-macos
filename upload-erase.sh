@@ -4,7 +4,7 @@ set -eu
 set -o pipefail
 
 arch="$1"
-agent="$(buildkite-agent meta-data get agent)"
+hostname="$(buildkite-agent meta-data get hostname)"
 
 cat <<EOF
 steps:
@@ -14,7 +14,7 @@ steps:
     depends_on: $arch-erase
     agents:
       system: $arch
-      agent: $agent
+      hostname: $hostname
     command:
       - echo curl http://bonk
 EOF

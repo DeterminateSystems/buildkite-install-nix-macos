@@ -19,7 +19,7 @@ steps:
       system: $arch
     command:
       - echo 'cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon'
-      - buildkite-agent meta-data set agent "$BUILDKITE_AGENT_NAME"
+      # - buildkite-agent meta-data set agent "$BUILDKITE_AGENT_NAME"
       # - echo buildkite-agent meta-data set nix 1
       - ./upload-erase.sh $arch | buildkite-agent pipeline upload
 EOF
