@@ -26,5 +26,6 @@ steps:
       - ./upload-erase.sh $arch | buildkite-agent pipeline upload
       # Set this as a nix=1 machine
       # - sudo sed -i '' 's@nix=0@nix=1@' /var/lib/buildkite-agent/buildkite-agent.cfg
-      - sudo bash -c 'set -x; sleep 1; launchctl unload /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist &>>/tmp/buildkite-restart.log && echo unloaded &>>/tmp/buildkite-restart.log; launchctl load /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist &>>/tmp/buildkite-restart.log && echo loaded &>>/tmp/buildkite-restart.log' & disown
+      # - sudo bash -c 'set -x; sleep 1; launchctl unload /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist &>>/tmp/buildkite-restart.log && echo unloaded &>>/tmp/buildkite-restart.log; launchctl load /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist &>>/tmp/buildkite-restart.log && echo loaded &>>/tmp/buildkite-restart.log' & disown
+      - sudo bash -c 'sleep 1; echo hi &>>/tmp/wat ; echo bye &>>/tmp/wat' & disown
 EOF
