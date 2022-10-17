@@ -25,5 +25,6 @@ steps:
       - ./upload-erase.sh $arch | buildkite-agent pipeline upload
       # Set this as a nix=1 machine
       - sudo sed -i '' 's@nix=0@nix=1@' /var/lib/buildkite-agent/buildkite-agent.cfg
-      - sudo launchctl kickstart -k com.buildkite.buildkite-agent
+      - sudo launchctl unload /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist
+      - sudo launchctl load /Library/LaunchDaemons/com.buildkite.buildkite-agent.plist
 EOF
