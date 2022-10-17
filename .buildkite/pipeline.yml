@@ -7,10 +7,10 @@ steps:
     command:
       - ./upload-install.sh aarch64-darwin | buildkite-agent pipeline upload
 
-  - label: "Upload install steps for x86_64-darwin"
-    # agents:
-    #   mac: 1
-    #   nix: 0
-    #   system: x86_64-darwin
-    command:
-      - echo './upload-install.sh x86_64-darwin | buildkite-agent pipeline upload'
+  # - label: "Upload install steps for x86_64-darwin"
+  #   # agents:
+  #   #   mac: 1
+  #   #   nix: 0
+  #   #   system: x86_64-darwin
+  #   command:
+  #     - echo './upload-install.sh x86_64-darwin | buildkite-agent pipeline upload'
