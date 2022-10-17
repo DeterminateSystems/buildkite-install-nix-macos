@@ -18,9 +18,7 @@ steps:
       nix: 0
       system: $arch
     command:
-      - set -x
-      - if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'; fi
-      - nix --help &>/dev/null || cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon
+      - cat /dev/null | sh <(curl -L https://nixos.org/nix/install) --daemon
       - if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'; fi
       - buildkite-agent meta-data set hostname "\$(nix --extra-experimental-features 'flakes nix-command' run nixpkgs#jq -- -r '.BUILDKITE_AGENT_META_DATA_HOSTNAME' <(buildkite-agent env))"
       - ./upload-erase.sh $arch | buildkite-agent pipeline upload
