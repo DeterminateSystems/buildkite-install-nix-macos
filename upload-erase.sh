@@ -10,11 +10,14 @@ cat <<EOF
 steps:
   - block: "$arch erase"
     key: $arch-erase
-  - label: "Erase $arch"
+  - block: "$arch really erase"
     depends_on: $arch-erase
+    key: $arch-really-erase
+  - label: "Erase $arch"
+    depends_on: $arch-really-erase
     agents:
       system: $arch
       hostname: $hostname
     command:
-      - echo curl http://bonk
+      - curl http://bonk
 EOF
