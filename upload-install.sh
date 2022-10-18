@@ -11,6 +11,7 @@ steps:
     concurrency_group: $arch-install
     concurrency: 1
     agents:
+      queue: bootstrap
       mac: 1
       nix: 0
       system: $arch
